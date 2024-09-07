@@ -3,19 +3,32 @@ import tkinter
 root = tkinter.Tk()
 root.title("Calc")
 
+expression = ""
+
+
 # Create functions
 def add(value):
-   print(value)
+   global expression
+   expression += value
+   label_result.config(text=expression)
 
 def clear():
-   pass
+   global expression
+   expression = ""
+   label_result.config(text=expression)
 
 def calculate():
-   pass
-
+   global expression
+   if expression != "":
+      try:
+         result = eval(expression)
+      except:
+         result = "error"
+         expression = ""
+   label_result.config(text=result)
 
 # Create GUI 
-label_result = tkinter.Label(root, text="99")
+label_result = tkinter.Label(root, text="")
 label_result.grid(row=0, column=0, columnspan=4)
 
 button_clear = tkinter.Button(root, text="AC", command=lambda: clear())
