@@ -19,11 +19,12 @@ def clear():
 
 def calculate():
    global expression
+   result = " "
    if expression != "":
       try:
          result = eval(expression)
       except:
-         result = "error"
+         result = "ERROR"
          expression = ""
    label_result.config(text=result)
 
